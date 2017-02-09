@@ -12,3 +12,6 @@ end
 
 -- Load API
 dofile(modpath.."/api.lua")
+
+-- Load storage devices
+dofile(modpath.."/storage.lua")
