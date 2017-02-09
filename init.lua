@@ -15,3 +15,6 @@ dofile(modpath.."/api.lua")
 
 -- Load storage devices
 dofile(modpath.."/storage.lua")
+
+-- Load machines
+dofile(modpath.."/machines.lua")
