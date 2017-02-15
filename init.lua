@@ -13,8 +13,50 @@ end
 -- Load API
 dofile(modpath.."/api.lua")
 
--- Load storage devices
-dofile(modpath.."/storage.lua")
+-------------------
+----- MODULES -----
+-------------------
 
--- Load machines
-dofile(modpath.."/machines.lua")
+local loaded_modules = {}
+
+local settings = Settings(modpath.."/modules.conf"):to_table()
+
+-- [function] Get module path
+function microexpansion.get_module_path(name)
+  local module_path = modpath.."/modules/"..name
+
+  if io.open(module_path.."/init.lua") then
+    return module_path
+  end
+end
+
+-- [function] Load module (overrides modules.conf)
+function microexpansion.load_module(name)
+  if loaded_modules[name] ~= false then
+    local module_init = microexpansion.get_module_path(name).."/init.lua"
+
+    if module_init then
+      dofile(module_init)
+      loaded_modules[name] = true
+      return true
+    else
+      microexpansion.log("Invalid module \""..name.."\". The module either does not exist "..
+        "or is missing an init.lua file.", "error")
+    end
+  else
+    return true
+  end
+end
+
+-- [function] Require module (does not override modules.conf)
+function microexpansion.require_module(name)
+  if settings[name] and settings[name] ~= false then
+    return microexpansion.load_module(name)
+  end
+end
+
+for name,enabled in pairs(settings) do
+  if enabled ~= false then
+    microexpansion.load_module(name)
+  end
+end
