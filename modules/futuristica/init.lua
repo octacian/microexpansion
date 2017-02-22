@@ -2,7 +2,7 @@ minetest.register_node("microexpansion:builder", {
 	description = "Builder/Destroyer",
   tiles = {"texturehere.png"},
   is_ground_content = true,
-	groups = {cracky}=3, stone=1},
+	groups = {cracky=3, stone=1},
 })
 
 minetest.register_craft({
