@@ -1,7 +1,7 @@
-MicroExpansion - ME [microexpansion]
-====================================
+![Screenshot](screenshot.png)
 
-**Note**: screenshots coming soon!
+MicroExpansion - ME [microexpansion]
+======================================
 
 * **Version:** 0.1, unstable
 * **Licence:** Code: MIT (see LICENSE), Media: CC-BY-SA 3.0
