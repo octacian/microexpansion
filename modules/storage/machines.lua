@@ -96,6 +96,7 @@ minetest.register_node("microexpansion:chest", {
 			local inv = minetest.get_meta(pos):get_inventory()
 			inv:remove_item(listname, stack)
 			inv:add_item(listname, stack)
+			microexpansion.cell_desc(inv, "cells", 1)
 		elseif listname == "cells" then
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
@@ -115,6 +116,7 @@ minetest.register_node("microexpansion:chest", {
 		if listname == "search" then
 			inv:remove_item("main", stack)
 		end
+		microexpansion.cell_desc(inv, "cells", 1)
 	end,
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
 		if listname == "cells" then

@@ -14,6 +14,7 @@ function microexpansion.register_cell(itemstring, def)
     inventory_image = BASENAME.."_"..def.inventory_image..".png",
     groups = {microexpansion_cell = 1},
     microexpansion = {
+      base_desc = def.description,
       drive = {
         capacity = def.capacity or 5000,
       },
@@ -61,4 +62,35 @@ function microexpansion.move_inv(inv1, inv2)
       end
     end
   end
+end
+
+-- [function] Update cell description
+function microexpansion.cell_desc(inv, listname, spos)
+  local stack = inv:get_stack(listname, spos)
+
+  if stack:get_name() ~= "" then
+    local meta      = stack:get_meta()
+    local base_desc = minetest.registered_craftitems[stack:get_name()].microexpansion.base_desc
+  	local max_slots = inv:get_size("main")
+  	local max_items = math.floor(max_slots * 99)
+
+  	local slots, items = 0, 0
+  	-- Get amount of items in drive
+  	for i = 1, max_items do
+  		local stack = inv:get_stack("main", i)
+  		local item = stack:get_name()
+  		if item ~= "" then
+  			slots = slots + 1
+  			local num = stack:get_count()
+  			if num == 0 then num = 1 end
+  			items = items + num
+  		end
+    end
+
+    -- Update description
+    meta:set_string("description", base_desc.."\n"..
+      minetest.colorize("grey", tostring(items).."/"..tostring(max_items).." Items"))
+    -- Update stack
+    inv:set_stack(listname, spos, stack)
+	end
 end
