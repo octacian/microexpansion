@@ -3,27 +3,35 @@
 local me = microexpansion
 
 -- [me chest] Get formspec
-local function chest_formspec(start_id, listname, page_max, query)
+local function chest_formspec(pos, start_id, listname, page_max, query)
 	local list
 	local page_number = ""
+	local to_chest = ""
 	local query = query or ""
+
 	if not listname then
 		list = "label[3,2;" .. minetest.colorize("red", "No cell!") .. "]"
 	else
 		list = "list[current_name;" .. listname .. ";0,0.3;8,4;" .. (start_id - 1) .. "]"
+		to_chest = [[
+			button[3.56,4.35;1.8,0.9;tochest;To Drive]
+			tooltip[tochest;Move everything from your inventory to the ME drive.]
+		]]
 	end
 	if page_max then
 		page_number = "label[6.05,4.5;" .. math.floor((start_id / 32)) + 1 ..
 			"/" .. page_max .."]"
 	end
+
 	return [[
-		size[9,10]
+		size[9,9.5]
 	]]..
 		microexpansion.gui_bg ..
 		microexpansion.gui_slots ..
 		list ..
 	[[
-		list[current_name;cells;8,1.8;1,1;]
+		label[0,-0.23;ME Chest]
+		list[current_name;cells;8.06,1.8;1,1;]
 		list[current_player;main;0,5.5;8,1;]
 		list[current_player;main;0,6.73;8,3;8]
 		button[5.4,4.35;0.8,0.9;prev;<]
@@ -37,7 +45,8 @@ local function chest_formspec(start_id, listname, page_max, query)
 		listring[current_player;main]
 		field_close_on_enter[filter;false]
 	]]..
-		page_number
+		page_number ..
+		to_chest
 end
 
 -- [me chest] Register node
@@ -58,7 +67,7 @@ minetest.register_node("microexpansion:chest", {
 
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("formspec", chest_formspec(1))
+		meta:set_string("formspec", chest_formspec(pos, 1))
 		meta:set_string("inv_name", "none")
 		meta:set_int("page", 1)
 		local inv = meta:get_inventory()
@@ -98,7 +107,7 @@ minetest.register_node("microexpansion:chest", {
 				inv:set_list("main", items)
 			end
 			meta:set_string("inv_name", "main")
-			meta:set_string("formspec", chest_formspec(1, "main", page_max))
+			meta:set_string("formspec", chest_formspec(pos, 1, "main", page_max))
 		end
 	end,
 	on_metadata_inventory_take = function(pos, listname, index, stack, player)
@@ -124,7 +133,7 @@ minetest.register_node("microexpansion:chest", {
 			inv:set_stack(listname, 1, new_stack)
 			inv:set_size("main", 0)
 			meta:set_int("page", 1)
-			meta:set_string("formspec", chest_formspec(1))
+			meta:set_string("formspec", chest_formspec(pos, 1))
 			return new_stack:get_count()
 		end
 		return stack:get_count()
@@ -144,19 +153,19 @@ minetest.register_node("microexpansion:chest", {
 				return
 			end
 			meta:set_int("page", page + 32)
-			meta:set_string("formspec", chest_formspec(page + 32, inv_name, page_max))
+			meta:set_string("formspec", chest_formspec(pos, page + 32, inv_name, page_max))
 		elseif fields.prev then
 			if page - 32 < 1 then
 				return
 			end
 			meta:set_int("page", page - 32)
-			meta:set_string("formspec", chest_formspec(page - 32, inv_name, page_max))
+			meta:set_string("formspec", chest_formspec(pos, page - 32, inv_name, page_max))
 		elseif fields.search or fields.key_enter_field == "filter" then
 			inv:set_size("search", 0)
 			if fields.filter == "" then
 				meta:set_int("page", 1)
 				meta:set_string("inv_name", "main")
-				meta:set_string("formspec", chest_formspec(1, "main", page_max))
+				meta:set_string("formspec", chest_formspec(pos, 1, "main", page_max))
 			else
 				local tab = {}
 				for i = 1, microexpansion.get_cell_size(cell_stack:get_name()) do
@@ -168,13 +177,16 @@ minetest.register_node("microexpansion:chest", {
 				inv:set_list("search", tab)
 				meta:set_int("page", 1)
 				meta:set_string("inv_name", "search")
-				meta:set_string("formspec", chest_formspec(1, "search", page_max, fields.filter))
+				meta:set_string("formspec", chest_formspec(pos, 1, "search", page_max, fields.filter))
 			end
 		elseif fields.clear then
 			inv:set_size("search", 0)
 			meta:set_int("page", 1)
 			meta:set_string("inv_name", "main")
-			meta:set_string("formspec", chest_formspec(1, "main", page_max))
+			meta:set_string("formspec", chest_formspec(pos, 1, "main", page_max))
+		elseif fields.tochest then
+			local pinv = minetest.get_inventory({type="player", name=sender:get_player_name()})
+			microexpansion.move_inv({ inv=pinv, name="main" }, { inv=inv, name="main" })
 		end
 	end,
 })

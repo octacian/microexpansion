@@ -46,3 +46,19 @@ end
 function microexpansion.int_to_pagenum(int)
   return math.floor(microexpansion.int_to_stacks(int) / 32)
 end
+
+-- [function] Move items from inv to inv
+function microexpansion.move_inv(inv1, inv2)
+  local finv, tinv   = inv1.inv, inv2.inv
+  local fname, tname = inv1.name, inv2.name
+
+  for i,v in ipairs(finv:get_list(fname) or {}) do
+    if tinv and tinv:room_for_item(tname, v) then
+      local leftover = tinv:add_item( tname, v )
+      finv:remove_item(fname, v)
+      if leftover and not(leftover:is_empty()) then
+        finv:add_item(fname, v)
+      end
+    end
+  end
+end
