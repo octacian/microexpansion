@@ -1,5 +1,7 @@
 -- microexpansion/machines.lua
 
+local me = microexpansion
+
 -- [me chest] Get formspec
 local function chest_formspec(start_id, listname, page_max, query)
 	local list
@@ -14,24 +16,28 @@ local function chest_formspec(start_id, listname, page_max, query)
 		page_number = "label[6.05,4.5;" .. math.floor((start_id / 32)) + 1 ..
 			"/" .. page_max .."]"
 	end
-	return "size[9,10]" ..
-	microexpansion.gui_bg ..
-	microexpansion.gui_slots ..
-	list ..
-	"list[current_name;cells;8,1.8;1,1;]" ..
-	"list[current_player;main;0,5.5;8,1;]" ..
-	"list[current_player;main;0,6.73;8,3;8]" ..
-	"button[5.4,4.35;0.8,0.9;prev;<]" ..
-	"button[7.25,4.35;0.8,0.9;next;>]" ..
-	"field[0.3,4.6;2.2,1;filter;;" .. query .. "]" ..
-	"button[2.1,4.5;0.8,0.5;search;?]" ..
-	"button[2.75,4.5;0.8,0.5;clear;X]" ..
-	"tooltip[search;Search]" ..
-	"tooltip[clear;Reset]" ..
-	"listring[current_name;main]" ..
-	"listring[current_player;main]" ..
-	"field_close_on_enter[filter;false]" ..
-	page_number
+	return [[
+		size[9,10]
+	]]..
+		microexpansion.gui_bg ..
+		microexpansion.gui_slots ..
+		list ..
+	[[
+		list[current_name;cells;8,1.8;1,1;]
+		list[current_player;main;0,5.5;8,1;]
+		list[current_player;main;0,6.73;8,3;8]
+		button[5.4,4.35;0.8,0.9;prev;<]
+		button[7.25,4.35;0.8,0.9;next;>]
+		field[0.3,4.6;2.2,1;filter;;]]..query..[[]
+		button[2.1,4.5;0.8,0.5;search;?]
+		button[2.75,4.5;0.8,0.5;clear;X]
+		tooltip[search;Search]
+		tooltip[clear;Reset]
+		listring[current_name;main]
+		listring[current_player;main]
+		field_close_on_enter[filter;false]
+	]]..
+		page_number
 end
 
 -- [me chest] Register node
@@ -85,9 +91,9 @@ minetest.register_node("microexpansion:chest", {
 			local meta = minetest.get_meta(pos)
 			local inv = meta:get_inventory()
 			local items = minetest.deserialize(stack:get_meta():get_string("items"))
-			local size = microexpansion.get_cell_size(stack:get_name())
-			local page_max = math.floor(size / 32) + 1
-			inv:set_size("main", size)
+			local size = me.get_cell_size(stack:get_name())
+			local page_max = me.int_to_pagenum(size) + 1
+			inv:set_size("main", me.int_to_stacks(size))
 			if items then
 				inv:set_list("main", items)
 			end

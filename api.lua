@@ -57,38 +57,3 @@ function microexpansion.register_item(itemstring, def)
     register_recipe(BASENAME..":"..itemstring, def.recipe)
   end
 end
-
--- [function] register cell
-function microexpansion.register_cell(itemstring, def)
-  if not def.inventory_image then
-    def.inventory_image = itemstring
-  end
-
-  -- register craftitem
-  minetest.register_craftitem(BASENAME..":"..itemstring, {
-    description = def.description,
-    inventory_image = BASENAME.."_"..def.inventory_image..".png",
-    groups = {microexpansion_cell = 1},
-    microexpansion = {
-      drive = {
-        capacity = def.capacity or 5000,
-      },
-    },
-  })
-
-  -- if recipe, register recipe
-  if def.recipe then
-    -- if recipe, register recipe
-    if def.recipe then
-      register_recipe(BASENAME..":"..itemstring, def.recipe)
-    end
-  end
-end
-
--- [function] Get cell size
-function microexpansion.get_cell_size(name)
-  local item = minetest.registered_craftitems[name]
-  if item then
-    return item.microexpansion.drive.capacity
-  end
-end
