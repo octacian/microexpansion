@@ -3,6 +3,10 @@ microexpansion = {}
 microexpansion.modpath = minetest.get_modpath("microexpansion") -- modpath
 local modpath = microexpansion.modpath -- modpath pointer
 
+-- Formspec GUI related stuff
+microexpansion.gui_bg = "bgcolor[#080808BB;true]background[5,5;1,1;gui_formbg.png;true]"
+microexpansion.gui_slots = "listcolors[#00000069;#5A5A5A;#141318;#30434C;#FFF]"
+
 -- logger
 function microexpansion.log(content, log_type)
   if not content then return false end

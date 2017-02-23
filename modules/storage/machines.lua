@@ -15,9 +15,8 @@ local function chest_formspec(start_id, listname, page_max, query)
 			"/" .. page_max .."]"
 	end
 	return "size[9,10]" ..
-	default.gui_bg ..
-	default.gui_bg_img ..
-	default.gui_slots ..
+	microexpansion.gui_bg ..
+	microexpansion.gui_slots ..
 	list ..
 	"list[current_name;cells;8,1.8;1,1;]" ..
 	"list[current_player;main;0,5.5;8,1;]" ..
@@ -32,8 +31,7 @@ local function chest_formspec(start_id, listname, page_max, query)
 	"listring[current_name;main]" ..
 	"listring[current_player;main]" ..
 	"field_close_on_enter[filter;false]" ..
-	page_number ..
-	default.get_hotbar_bg(0,5.50)
+	page_number
 end
 
 -- [me chest] Register node
