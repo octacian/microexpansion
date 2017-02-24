@@ -15,3 +15,8 @@ me.register_item("steel_infused_obsidian_ingot", {
     },
   },
 })
+
+-- [register item] Machine Casing
+me.register_item("machine_casing", {
+  description = "Machine Casing",
+})
