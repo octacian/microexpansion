@@ -3,3 +3,6 @@ The APIs provided by MicroExpansion are divided among several different files. U
 
 ### `modules.md`
 Non-API portions of MicroExpansion are loaded as modules to allow them to be easily enabled or disabled. This documents the API for loading, configuring, and interacting with modules.
+
+### `api.lua`
+This section documents the "core" API that is always loaded before any modules (`api.lua`). This API is mostly made up of functions to make registering items, nodes, and recipes quicker and more intuitive.
