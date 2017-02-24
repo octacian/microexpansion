@@ -10,7 +10,7 @@ __Single Recipe:__
 ```lua
 microexpansion.register_recipe("default:steelblock", {
   "single",
-  {
+  { 1,
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
@@ -18,25 +18,25 @@ microexpansion.register_recipe("default:steelblock", {
 })
 ```
 
-The above registers a single recipe for the item specified.
+The above registers a single recipe for the item specified. The `1` specifies the output quantity.
 
 __Multiple Recipes:__
 ```lua
 microexpansion.register_recipe("default:steelblock", {
   "multiple",
-  {
+  { 1,
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
     { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
   },
-  {
+  { 1,
     { "default:steel_ingot", "default:steel_ingot" },
     { "default:steel_ingot", "default:steel_ingot" },
   }
 })
 ```
 
-The above registers multiple recipes for the item specified.
+The above registers multiple recipes for the item specified. The `1` specifies the output quantity.
 
 #### `register_item(itemstring, def)`
 __Usage:__ `microexpansion.register_item(<itemstring (string)>, <item definition (table)>`
