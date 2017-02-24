@@ -13,6 +13,7 @@ function microexpansion.register_cell(itemstring, def)
     description = def.description,
     inventory_image = BASENAME.."_"..def.inventory_image..".png",
     groups = {microexpansion_cell = 1},
+    stack_max = 1,
     microexpansion = {
       base_desc = def.description,
       drive = {
