@@ -3,7 +3,7 @@
 MicroExpansion - ME [microexpansion]
 ======================================
 
-* **Version:** 0.1, unstable
+* **Version:** 0.2, unstable
 * **Licence:** Code: MIT (see LICENSE), Media: CC-BY-SA 3.0
 * [Github Repository](https://github.com/octacian/microexpansion)
 * **Downloads:**
@@ -27,4 +27,3 @@ Originally inspired by Applied Energistics 2 for Minecraft, MicroExpansion intro
 
 ### Discussion / Issues
 Discussion should take place here, on the forum post, or on enDEV IRC (irc.endev.xyz, port 6697, SSL, accept invalid certs), channel `#minetest`. Features requests should be made on the forum or through a GitHub issue. Bugs can best be reported by creating an issue on GitHub.
-
