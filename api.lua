@@ -1,8 +1,8 @@
 -- microexpansion/api.lua
 local BASENAME = "microexpansion"
 
--- [local function] register recipe
-local function register_recipe(output, recipe)
+-- [function] Register Recipe
+function microexpansion.register_recipe(output, recipe)
   local function isint(n)
     return n==math.floor(n)
   end
@@ -33,27 +33,52 @@ local function register_recipe(output, recipe)
     end
   end
 
-  -- check type
+  -- Check type
   if recipe[1] == "single" then single()
   elseif recipe[1] == "multiple" then multiple()
   else return microexpansion.log("invalid recipe for definition "..output..". "..dump(recipe[2])) end
 end
 
--- [function] register item
+-- [function] Register Item
 function microexpansion.register_item(itemstring, def)
-  -- usedfor
+  -- Set usedfor
   if def.usedfor then
-    def.description = def.description .. "\nfor " .. def.usedfor
+    def.description = def.description .. "\n"..minetest.colorize("grey", def.usedfor)
+  end
+  -- Update inventory image
+  if def.inventory_image then
+    def.inventory_image = BASENAME.."_"..def.inventory_image..".png"
+  else
+    def.inventory_image = BASENAME.."_"..itemstring..".png"
+  end
+
+  -- Register craftitem
+  minetest.register_craftitem(BASENAME..":"..itemstring, def)
+
+  -- if recipe, Register recipe
+  if def.recipe then
+    microexpansion.register_recipe(BASENAME..":"..itemstring, def.recipe)
+  end
+end
+
+-- [function] Register Node
+function microexpansion.register_node(itemstring, def)
+  -- Set usedfor
+  if def.usedfor then
+    def.description = def.description .. "\n"..minetest.colorize("grey", def.usedfor)
+  end
+  -- Update texture
+  if auto_complete ~= false then
+    for _,i in ipairs(def.tiles) do
+      def.tiles[_] = BASENAME.."_"..i..".png"
+    end
   end
 
   -- register craftitem
-  minetest.register_craftitem(BASENAME..":"..itemstring, {
-    description = def.description,
-    inventory_image = BASENAME.."_"..def.inventory_image..".png",
-  })
+  minetest.register_node(BASENAME..":"..itemstring, def)
 
   -- if recipe, register recipe
   if def.recipe then
-    register_recipe(BASENAME..":"..itemstring, def.recipe)
+    microexpansion.register_recipe(BASENAME..":"..itemstring, def.recipe)
   end
 end

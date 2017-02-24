@@ -26,7 +26,7 @@ function microexpansion.register_cell(itemstring, def)
   if def.recipe then
     -- if recipe, register recipe
     if def.recipe then
-      register_recipe(BASENAME..":"..itemstring, def.recipe)
+      microexpansion.register_recipe(BASENAME..":"..itemstring, def.recipe)
     end
   end
 end

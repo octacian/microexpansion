@@ -50,15 +50,16 @@ local function chest_formspec(pos, start_id, listname, page_max, query)
 end
 
 -- [me chest] Register node
-minetest.register_node("microexpansion:chest", {
-	description = "ME Chest\nCan interact with items in ME storage cells",
+microexpansion.register_node("chest", {
+	description = "ME Chest",
+	usedfor = "Can interact with items in ME storage cells",
 	tiles = {
-		"microexpansion_chest_top.png",
-		"microexpansion_chest_top.png",
-		"microexpansion_chest_side.png",
-		"microexpansion_chest_side.png",
-		"microexpansion_chest_side.png",
-		"microexpansion_chest_front.png",
+		"chest_top",
+		"chest_top",
+		"chest_side",
+		"chest_side",
+		"chest_side",
+		"chest_front",
 	},
 	is_ground_content = false,
 	groups = { cracky = 1 },
