@@ -6,11 +6,11 @@ local me = microexpansion
 me.register_node("fuel_fired_generator", {
   description = "Fuel-Fired Generator",
   tiles = {
-    "fuelgen_sides",
-		"fuelgen_sides",
-		"fuelgen_sides",
-		"fuelgen_sides",
-		"fuelgen_sides",
+    "machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
 		"fuelgen_front",
   },
   recipe = {
@@ -30,11 +30,11 @@ me.register_node("fuel_fired_generator", {
 me.register_node("super_smelter", {
   description = "Super Smelter",
   tiles = {
-		"super_smelter_sides",
-		"super_smelter_sides",
-		"super_smelter_sides",
-		"super_smelter_sides",
-		"super_smelter_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
 		"super_smelter_front",
 	},
   recipe = {
