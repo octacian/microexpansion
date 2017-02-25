@@ -23,6 +23,7 @@ me.register_node("fuel_fired_generator", {
   },
   groups = { cracky = 1 },
   paramtype2 = "facedir",
+  status = "no",
 })
 
 -- [register node] Super Smelter
@@ -46,4 +47,5 @@ me.register_node("super_smelter", {
   },
   groups = { cracky = 1 },
   paramtype2 = "facedir",
+  status = "no",
 })

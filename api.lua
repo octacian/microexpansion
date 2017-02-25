@@ -39,6 +39,17 @@ function microexpansion.register_recipe(output, recipe)
   else return microexpansion.log("invalid recipe for definition "..output..". "..dump(recipe[2])) end
 end
 
+-- [local function] Choose description colour
+local function desc_colour(status, desc)
+  if status == "unstable" then
+    return minetest.colorize("orange", desc)
+  elseif status == "no" then
+    return minetest.colorize("red", desc)
+  else
+    return minetest.colorize("white", desc)
+  end
+end
+
 -- [function] Register Item
 function microexpansion.register_item(itemstring, def)
   -- Set usedfor
@@ -51,6 +62,8 @@ function microexpansion.register_item(itemstring, def)
   else
     def.inventory_image = BASENAME.."_"..itemstring..".png"
   end
+  -- Colour description
+  def.description = desc_colour(def.status, def.description)
 
   -- Register craftitem
   minetest.register_craftitem(BASENAME..":"..itemstring, def)
@@ -73,6 +86,8 @@ function microexpansion.register_node(itemstring, def)
       def.tiles[_] = BASENAME.."_"..i..".png"
     end
   end
+  -- Colour description
+  def.description = desc_colour(def.status, def.description)
 
   -- register craftitem
   minetest.register_node(BASENAME..":"..itemstring, def)
