@@ -49,3 +49,19 @@ me.register_node("super_smelter", {
   paramtype2 = "facedir",
   status = "no",
 })
+
+-- [register item] Geothermal Generator
+me.register_node("geo_generator", {
+  description = "Geothermal Generator",
+  tiles = {
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"machine_sides",
+		"geogen_front",
+	},
+  groups = { cracky = 1 },
+  paramtype2 = "facedir",
+  status = "no",
+})
