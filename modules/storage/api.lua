@@ -88,9 +88,12 @@ function microexpansion.cell_desc(inv, listname, spos)
   		end
     end
 
+    -- Calculate Percentage
+    local percent = math.floor(items / max_items * 100)
+
     -- Update description
     meta:set_string("description", base_desc.."\n"..
-      minetest.colorize("grey", tostring(items).."/"..tostring(max_items).." Items"))
+      minetest.colorize("grey", tostring(items).."/"..tostring(max_items).." Items ("..tostring(percent).."%)"))
     -- Update stack
     inv:set_stack(listname, spos, stack)
 	end
