@@ -19,4 +19,12 @@ me.register_item("steel_infused_obsidian_ingot", {
 -- [register item] Machine Casing
 me.register_item("machine_casing", {
   description = "Machine Casing",
+  recipe = {
+    "single",
+    { 1,
+    {"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"},
+		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
+  },
+},
 })

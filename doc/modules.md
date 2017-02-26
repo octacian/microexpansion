@@ -2,7 +2,7 @@
 Non-API portions of MicroExpansion are loaded as modules to allow them to be easily enabled or disabled. Modules can be manually loaded or required from the API or from another module. Specific modules can be disabled using `modules.conf`, as documented below.
 
 ## Managing Modules
-Modules listed in the configuration file are automatically loaded at startup unless specifically disabled. For the purpose of listing and/or disabling mods, we've introduced the `modules.conf` file. 
+Modules listed in the configuration file are automatically loaded at startup unless specifically disabled. For the purpose of listing and/or disabling mods, we've introduced the `modules.conf` file.
 
 Each module is listed on a new line, as if setting a variable. A module can be disabled or enabled by setting this variable to `true` or `false`. If a module is not listed here, or is set to `false` (disabled), it will not be automatically loaded.
 
