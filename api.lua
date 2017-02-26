@@ -7,36 +7,32 @@ function microexpansion.register_recipe(output, recipe)
     return n==math.floor(n)
   end
 
-  local function getAmount()
-    if isint(recipe[2][1]) then
-      local q = recipe[2][1]
-      recipe[2][1] = nil
-      return q
+  local function get_amount(_)
+    if isint(recipe[_][1]) then
+      return recipe[_][1]
     else return 1 end
   end
 
-  local function register(amount, recipe)
-    minetest.register_craft({
-      output = output.." "..amount,
-      recipe = recipe,
-    })
-  end
-
-  local function single()
-    register(getAmount(), recipe[2])
-  end
-
-  local function multiple()
-    for i, item in ipairs(recipe) do
-      if i == 0 then return end
-      register(getAmount(), recipe[i])
+  local function get_type(_)
+    if type(recipe[_][2]) == "string" then
+      return recipe[_][2]
     end
   end
 
-  -- Check type
-  if recipe[1] == "single" then single()
-  elseif recipe[1] == "multiple" then multiple()
-  else return microexpansion.log("invalid recipe for definition "..output..". "..dump(recipe[2])) end
+  local function register(_)
+    local def = {
+      type   = get_type(_),
+      output = output.." "..tostring(get_amount(_)),
+      recipe = recipe[_][3] or recipe[_][2]
+    }
+
+    microexpansion.log("Recipe: "..dump(def))
+    minetest.register_craft(def)
+  end
+
+  for _, i in ipairs(recipe) do
+    register(_)
+  end
 end
 
 -- [local function] Choose description colour

@@ -14,11 +14,11 @@ me.register_node("fuel_fired_generator", {
 		"fuelgen_front",
   },
   recipe = {
-    "single",
-    { 1,
-      { "default:steel_ingot", "default:furnace", "default:steel_ingot" },
-      {"default:steel_ingot", "microexpansion:machine_casing", "default:steel_ingot" },
-      { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+    { 1, {
+        { "default:steel_ingot", "default:furnace", "default:steel_ingot" },
+        {"default:steel_ingot", "microexpansion:machine_casing", "default:steel_ingot" },
+        { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+      },
     }
   },
   groups = { cracky = 1 },
@@ -38,11 +38,11 @@ me.register_node("super_smelter", {
 		"super_smelter_front",
 	},
   recipe = {
-    "single",
-    { 1,
-      { "default:furnace", "default:furnace", "default:furnace" },
-    	{ "default:steel_ingot", "microexpansion:machine_casing", "default:steel_ingot" },
-    	{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+    { 1, {
+        { "default:furnace", "default:furnace", "default:furnace" },
+      	{ "default:steel_ingot", "microexpansion:machine_casing", "default:steel_ingot" },
+      	{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+      },
     },
   },
   groups = { cracky = 1 },

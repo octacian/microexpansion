@@ -4,39 +4,25 @@ The core API is composed of several functions to make registering new items, nod
 #### `register_recipe(output, def)`
 __Usage:__ `microexpansion.register_recipe(<output (string)>, <recipe (table)>)`
 
-Though this may seem rather complex to understand, this is a very useful timesaving function when registering recipes. It allows registering multiple recipes at once in one table. The output must always remain the same as is specified as the first parameter, while the second parameter should be a table structured like one of the tables below.
+Though this may seem rather complex to understand, this is a very useful timesaving function when registering recipes. It allows registering multiple recipes at once in one table. The output must always remain the same as is specified as the first parameter, while the second parameter should be a table structured like the table below.
 
-__Single Recipe:__
+__Example:__
 ```lua
 microexpansion.register_recipe("default:steelblock", {
-  "single",
-  { 1,
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+  { 1, {
+      { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+      { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+      { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+    },
+  },
+  { 1, "shapeless", {
+      "default:steel_ingot", "default:obsidian_shard", "default:steel_ingot",
+    },
   },
 })
 ```
 
-The above registers a single recipe for the item specified. The `1` specifies the output quantity.
-
-__Multiple Recipes:__
-```lua
-microexpansion.register_recipe("default:steelblock", {
-  "multiple",
-  { 1,
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
-    { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
-  },
-  { 1,
-    { "default:steel_ingot", "default:steel_ingot" },
-    { "default:steel_ingot", "default:steel_ingot" },
-  }
-})
-```
-
-The above registers multiple recipes for the item specified. The `1` specifies the output quantity.
+The above registers a two recipees for the item specified. The `1` specifies the output quantity. `shapeless` causes the second recipe to be of the `shapeless` type. After the first one or two definitions (amount, type), the recipe can be specified as normal inside another sub-table. You can have as many recipe sub-tables as you want.
 
 #### `register_item(itemstring, def)`
 __Usage:__ `microexpansion.register_item(<itemstring (string)>, <item definition (table)>`

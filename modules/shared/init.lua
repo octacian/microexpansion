@@ -9,9 +9,9 @@ local me = microexpansion
 me.register_item("steel_infused_obsidian_ingot", {
   description = "Steel Infused Obsidian Ingot",
   recipe = {
-    "single",
-    { 1,
-      { "default:steel_ingot", "default:obsidian_shard", "default:steel_ingot" },
+    { 1, {
+        { "default:steel_ingot", "default:obsidian_shard", "default:steel_ingot" },
+      },
     },
   },
 })
@@ -20,11 +20,11 @@ me.register_item("steel_infused_obsidian_ingot", {
 me.register_item("machine_casing", {
   description = "Machine Casing",
   recipe = {
-    "single",
-    { 1,
-    {"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"},
-		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"}
+    { 1, {
+        {"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+    		{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"},
+    		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+      },
+    },
   },
-},
 })
