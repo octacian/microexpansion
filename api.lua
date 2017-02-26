@@ -25,8 +25,6 @@ function microexpansion.register_recipe(output, recipe)
       output = output.." "..tostring(get_amount(_)),
       recipe = recipe[_][3] or recipe[_][2]
     }
-
-    microexpansion.log("Recipe: "..dump(def))
     minetest.register_craft(def)
   end
 
