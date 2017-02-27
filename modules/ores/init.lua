@@ -1,44 +1,43 @@
+-- ores/init.lua
+
+local me = microexpansion
+
 -- [register] Incranium Ore
-minetest.register_node("microexpansion:incranium", {
+me.register_node("incranium", {
   description = "Incranium Ore",
-  tiles = { "incranium_ore.png" },
+  tiles = { "incranium" },
   is_ground_content = true,
-  drop = "microexpansion:incranium",
   groups = { cracky=3, stone=1 },
+  type = "ore",
+  oredef = {
+    {
+      ore_type = "blob",
+      wherein = "default:stone",
+      clust_scarcity = 4*4*4,
+      clust_num_ores = 4,
+      clust_size = 3,
+      y_min = -300,
+      y_max = -90,
+    },
+  },
 })
-
--- [ore] Register Incranium Ore
-minetest.register_ore({
-  ore_type = "blob",
-  ore = "microexpansion:incranium",
-  wherein = "default:stone",
-  clust_scarcity = 4*4*4,
-  clust_num_ores = 4,
-  clust_size = 3,
-  y_min = -300,
-  y_max = -90,
-})
-
 
 -- "Supernatet", pronounced "Super-nat-et" is Latin for "float", this ore will
 -- float up if there are no blocks above it, so be careful!
 -- Supernatet ore will be used to craft wings of flight
-minetest.register_node("microexpansion:supernatet", {
+me.register_node("supernatet", {
   description = "Supernatant Ore",
-  tiles = { "supernatet_ore.png" },
+  tiles = { "supernatet" },
   is_ground_content = true,
-  drop = "microexpansion:supernatet",
+  type = "ore",
   groups = { cracky=3, stone=1 },
-})
-
--- [ore] Register Supernatet Ore
-minetest.register_ore({
-  ore_type = "blob",
-  ore = "microexpansion:supernatet_ore",
-  wherein = "default:stone",
-  clust_scarcity = 4*4*4,
-  clust_num_ores = 4,
-  clust_size = 3,
-  y_min = -300,
-  y_max = -90,
+  oredef = {
+    ore_type = "blob",
+    wherein = "default:stone",
+    clust_scarcity = 4*4*4,
+    clust_num_ores = 4,
+    clust_size = 3,
+    y_min = -300,
+    y_max = -90,
+  }
 })

@@ -33,6 +33,19 @@ function microexpansion.register_recipe(output, recipe)
   end
 end
 
+-- [function] Register oredef
+function microexpansion.register_oredef(ore, def)
+  local function register(_)
+    local def = def[_]
+    def.ore = "microexpansion:"..ore
+    minetest.register_ore(def)
+  end
+
+  for _, i in ipairs(def) do
+    register(_)
+  end
+end
+
 -- [local function] Choose description colour
 local function desc_colour(status, desc)
   if status == "unstable" then
@@ -77,17 +90,27 @@ function microexpansion.register_node(itemstring, def)
   -- Update texture
   if auto_complete ~= false then
     for _,i in ipairs(def.tiles) do
-      def.tiles[_] = BASENAME.."_"..i..".png"
+      local prefix = ""
+      if def.type == "ore" then
+        prefix = "ore_"
+      end
+
+      def.tiles[_] = BASENAME.."_"..prefix..i..".png"
     end
   end
   -- Colour description
   def.description = desc_colour(def.status, def.description)
 
-  -- register craftitem
+  -- Register craftitem
   minetest.register_node(BASENAME..":"..itemstring, def)
 
-  -- if recipe, register recipe
+  -- if recipe, Register recipe
   if def.recipe then
     microexpansion.register_recipe(BASENAME..":"..itemstring, def.recipe)
+  end
+
+  -- if oredef, Register oredef
+  if def.oredef then
+    microexpansion.register_oredef(BASENAME..":"..itemstring, def.oredef)
   end
 end
