@@ -6,4 +6,5 @@ local path = microexpansion.get_module_path("power")
 
 -- Load Resources
 
+dofile(path.."/ctrl.lua") -- Controller
 dofile(path.."/gen.lua") -- Generators
