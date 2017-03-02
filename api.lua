@@ -128,8 +128,14 @@ function microexpansion.register_node(itemstring, def)
   end
   -- Colour description
   def.description = desc_colour(def.status, def.description)
+  -- Update connect_sides
+  if def.connect_sides == "nobottom" then
+    def.connect_sides = { "top", "front", "left", "back", "right" }
+  elseif def.connect_sides == "machine" then
+    def.connect_sides = { "top", "bottom", "left", "back", "right" }
+  end
 
-  -- Register craftitem
+  -- Register node
   minetest.register_node(BASENAME..":"..itemstring, def)
 
   -- if recipe, Register recipe

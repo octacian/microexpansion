@@ -1,7 +1,4 @@
--- ctrl.lua
---[[
-WARNING: this is the MAIN power controller, be very careful when making changed.
-]]
+-- power/ctrl.lua
 
 local me = microexpansion
 
@@ -34,6 +31,29 @@ me.register_node("ctrl", {
 			{-0.1875, -0.5, -0.1875, 0.1875, -0.25, 0.1875}, -- Bottom2
 		},
 	},
-  groups = { cracky = 1 },
+  groups = { cracky = 1, me_connect = 1, },
+  connect_sides = "nobottom",
+  status = "no",
+})
+
+-- [register node] Cable
+me.register_node("cable", {
+  description = "ME Cable",
+  tiles = {
+    "cable",
+  },
+  drawtype = "nodebox",
+  node_box = {
+    type = "connected",
+    fixed          = {-0.25, -0.25, -0.25, 0.25,  0.25, 0.25},
+		connect_top    = {-0.25, -0.25, -0.25, 0.25,  0.5,  0.25}, -- y+
+		connect_bottom = {-0.25, -0.5,  -0.25, 0.25,  0.25, 0.25}, -- y-
+		connect_front  = {-0.25, -0.25, -0.5,  0.25,  0.25, 0.25}, -- z-
+		connect_back   = {-0.25, -0.25,  0.25, 0.25,  0.25, 0.5 }, -- z+
+		connect_left   = {-0.5,  -0.25, -0.25, 0.25,  0.25, 0.25}, -- x-
+		connect_right  = {-0.25, -0.25, -0.25, 0.5,   0.25, 0.25}, -- x+
+  },
+  connects_to = {"group:me_connect"},
+  groups = { crumbly = 1, me_connect = 1, },
   status = "no",
 })

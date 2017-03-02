@@ -21,7 +21,8 @@ me.register_node("fuel_fired_generator", {
       },
     }
   },
-  groups = { cracky = 1 },
+  groups = { cracky = 1, me_connect = 1, },
+  connect_sides = "machine",
   paramtype2 = "facedir",
   status = "no",
 })
@@ -45,7 +46,8 @@ me.register_node("super_smelter", {
       },
     },
   },
-  groups = { cracky = 1 },
+  groups = { cracky = 1, me_connect = 1, },
+  connect_sides = "machine",
   paramtype2 = "facedir",
   status = "no",
 })
@@ -61,7 +63,8 @@ me.register_node("geo_generator", {
 		"machine_sides",
 		"geogen_front",
 	},
-  groups = { cracky = 1 },
+  groups = { cracky = 1, me_connect = 1, },
+  connect_sides = "machine",
   paramtype2 = "facedir",
   status = "no",
 })
