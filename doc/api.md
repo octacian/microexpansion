@@ -1,6 +1,8 @@
 # Core API
 The core API is composed of several functions to make registering new items, nodes, and recipes for items and nodes more efficient and intuitive. Code for this public API is in `./api.lua`. This documentation is divided up per function.
 
+__Note:__ Any definition table for registering anything using the ME API allow a `disabled` property to be specified. If set to `false`, the node/item will not be registered, if not set, it will.
+
 #### `register_recipe(output, def)`
 __Usage:__ `microexpansion.register_recipe(<output (string)>, <recipe (table)>)`
 

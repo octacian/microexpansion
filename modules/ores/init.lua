@@ -20,6 +20,7 @@ me.register_node("incranium", {
       y_max = -90,
     },
   },
+  disabled = true,
 })
 
 -- "Supernatet", pronounced "Super-nat-et" is Latin for "float", this ore will
@@ -39,5 +40,6 @@ me.register_node("supernatet", {
     clust_size = 3,
     y_min = -300,
     y_max = -90,
-  }
+  },
+  status = "unstable",
 })

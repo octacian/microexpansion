@@ -3,6 +3,11 @@ local BASENAME = "microexpansion"
 
 -- [function] Register Recipe
 function microexpansion.register_recipe(output, recipe)
+  -- Check if disabled
+  if recipe.disabled == true then
+    return
+  end
+
   local function isint(n)
     return n==math.floor(n)
   end
@@ -29,12 +34,22 @@ function microexpansion.register_recipe(output, recipe)
   end
 
   for _, i in ipairs(recipe) do
+    -- Check if disabled
+    if recipe.disabled == true then
+      return
+    end
+
     register(_)
   end
 end
 
 -- [function] Register oredef
 function microexpansion.register_oredef(ore, def)
+  -- Check if disabled
+  if def.disabled == true then
+    return
+  end
+
   local function register(_)
     local def = def[_]
     def.ore = "microexpansion:"..ore
@@ -42,6 +57,11 @@ function microexpansion.register_oredef(ore, def)
   end
 
   for _, i in ipairs(def) do
+    -- Check if disabled
+    if def.disabled == true then
+      return
+    end
+
     register(_)
   end
 end
@@ -59,6 +79,10 @@ end
 
 -- [function] Register Item
 function microexpansion.register_item(itemstring, def)
+  -- Check if disabled
+  if def.disabled == true then
+    return
+  end
   -- Set usedfor
   if def.usedfor then
     def.description = def.description .. "\n"..minetest.colorize("grey", def.usedfor)
@@ -83,6 +107,10 @@ end
 
 -- [function] Register Node
 function microexpansion.register_node(itemstring, def)
+  -- Check if disabled
+  if def.disabled == true then
+    return
+  end
   -- Set usedfor
   if def.usedfor then
     def.description = def.description .. "\n"..minetest.colorize("grey", def.usedfor)
