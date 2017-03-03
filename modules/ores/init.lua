@@ -28,7 +28,7 @@ me.register_node("incranium", {
 -- Supernatet ore will be used to craft wings of flight
 me.register_node("supernatet", {
   description = "Supernatant Ore",
-  tiles = { "supernatet" },
+  tiles = { "default_stone.png^microexpansion_ore_supernatet.png" },
   is_ground_content = true,
   type = "ore",
   groups = { cracky=3, stone=1 },
