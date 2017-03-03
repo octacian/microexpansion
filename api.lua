@@ -118,12 +118,14 @@ function microexpansion.register_node(itemstring, def)
   -- Update texture
   if auto_complete ~= false then
     for _,i in ipairs(def.tiles) do
-      local prefix = ""
-      if def.type == "ore" then
-        prefix = "ore_"
-      end
+      if #def.tiles[_]:split("^") <= 1 then
+        local prefix = ""
+        if def.type == "ore" then
+          prefix = "ore_"
+        end
 
-      def.tiles[_] = BASENAME.."_"..prefix..i..".png"
+        def.tiles[_] = BASENAME.."_"..prefix..i..".png"
+      end
     end
   end
   -- Colour description
