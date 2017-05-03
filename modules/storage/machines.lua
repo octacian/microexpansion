@@ -6,20 +6,29 @@ local me = microexpansion
 local function chest_formspec(pos, start_id, listname, page_max, query)
 	local list
 	local page_number = ""
-	local to_chest = ""
+	local buttons = ""
 	local query = query or ""
 
 	if not listname then
 		list = "label[3,2;" .. minetest.colorize("red", "No cell!") .. "]"
 	else
 		list = "list[current_name;" .. listname .. ";0,0.3;8,4;" .. (start_id - 1) .. "]"
-		to_chest = [[
+		buttons = [[
 			button[3.56,4.35;1.8,0.9;tochest;To Drive]
 			tooltip[tochest;Move everything from your inventory to the ME drive.]
+			button[5.4,4.35;0.8,0.9;prev;<]
+			button[7.25,4.35;0.8,0.9;next;>]
+			tooltip[prev;Previous]
+			tooltip[next;Next]
+			field[0.29,4.6;2.2,1;filter;;]]..query..[[]
+			button[2.1,4.5;0.8,0.5;search;?]
+			button[2.75,4.5;0.8,0.5;clear;X]
+			tooltip[search;Search]
+			tooltip[clear;Reset]
 		]]
 	end
 	if page_max then
-		page_number = "label[6.05,4.5;" .. math.floor((start_id / 32)) + 1 ..
+		page_number = "label[6.15,4.5;" .. math.floor((start_id / 32)) + 1 ..
 			"/" .. page_max .."]"
 	end
 
@@ -34,19 +43,12 @@ local function chest_formspec(pos, start_id, listname, page_max, query)
 		list[current_name;cells;8.06,1.8;1,1;]
 		list[current_player;main;0,5.5;8,1;]
 		list[current_player;main;0,6.73;8,3;8]
-		button[5.4,4.35;0.8,0.9;prev;<]
-		button[7.25,4.35;0.8,0.9;next;>]
-		field[0.3,4.6;2.2,1;filter;;]]..query..[[]
-		button[2.1,4.5;0.8,0.5;search;?]
-		button[2.75,4.5;0.8,0.5;clear;X]
-		tooltip[search;Search]
-		tooltip[clear;Reset]
 		listring[current_name;main]
 		listring[current_player;main]
 		field_close_on_enter[filter;false]
 	]]..
 		page_number ..
-		to_chest
+		buttons
 end
 
 -- [me chest] Register node
