@@ -7,8 +7,8 @@ MicroExpansion - ME [microexpansion]
 * **Licence:** Code: MIT (see LICENSE), Media: CC-BY-SA 3.0
 * [Github Repository](https://github.com/octacian/microexpansion)
 * **Downloads:**
-  * [Master (Unstable)](https://github.com/octacian/microexpansion/archive/master.zip)
-  * ...or browse the code on [GitHub](https://github.com/octacian/microexpansion)
+	* [Master (Unstable)](https://github.com/octacian/microexpansion/archive/master.zip)
+	* ...or browse the code on [GitHub](https://github.com/octacian/microexpansion)
 
 **Note**: MicroExpansion requires that you have `minetest-dev` with [this commit](https://github.com/minetest/minetest/commit/f2f9a923515386d787a245fac52f78e815b3a839) or later.
 
