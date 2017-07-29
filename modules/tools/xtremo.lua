@@ -2,9 +2,9 @@
 
 -- [register tool] Pickaxe
 minetest.register_tool("microexpansion:xtremo_pickaxe", {
-  description = "In Xtremo Pickaxe",
-  inventory_image = "microexpansion_in_xtremo_pickaxe.png",
-  tool_capabilities = {
+	description = "In Xtremo Pickaxe",
+	inventory_image = "microexpansion_in_xtremo_pickaxe.png",
+	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
 		groupcaps={
@@ -16,9 +16,9 @@ minetest.register_tool("microexpansion:xtremo_pickaxe", {
 
 -- [register tool] Axe
 minetest.register_tool("microexpansion:xtremo_axe", {
-  description = "In Xtremo Axe",
-  inventory_image = "microexpansion_in_xtremo_axe.png",
-  tool_capabilities = {
+	description = "In Xtremo Axe",
+	inventory_image = "microexpansion_in_xtremo_axe.png",
+	tool_capabilities = {
 		full_punch_interval = 0.9,
 		max_drop_level=3,
 		groupcaps={
