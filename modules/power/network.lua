@@ -1,6 +1,7 @@
 -- power/network.lua
 
 local me = microexpansion
+local power = me.power
 
 ---
 --- Helper Functions
